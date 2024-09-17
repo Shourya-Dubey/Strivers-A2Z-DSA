@@ -38,7 +38,7 @@ void pattern4(int n){
 
 void pattern5(int n){
     for(int i = 0; i<n; i++){
-        for(int j = n; j>i ;j--){
+        for(int j = 0; j<n-j+1 ;j++){
             cout<<"*"<<" ";
         }
         cout<<endl;
@@ -57,11 +57,6 @@ void pattern6(int n){
 main()
 {
     int n = 5;
-    // pattern1(n);
-    // pattern2(n);
-    // pattern3(n);
-    // pattern4(n);
-    // pattern5(n);
     pattern6(n);
     return 0;
 }
