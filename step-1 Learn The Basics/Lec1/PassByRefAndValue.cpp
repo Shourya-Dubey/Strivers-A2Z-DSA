@@ -30,10 +30,10 @@ main()
     cout<<s<<endl;
 
     int n = 5;
-    int arr[5];
+    int arr[n];
 
     cout<<"Taking input for Array ";
-    for(int i = 0; i<5; i++){
+    for(int i = 0; i<n; i++){
         cin>>arr[i];
     }
 
