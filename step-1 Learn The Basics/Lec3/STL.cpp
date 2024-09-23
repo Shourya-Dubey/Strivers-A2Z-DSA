@@ -170,6 +170,20 @@ ms.erase(ms.find(1), ms.find(1)+2);
 unordered_set<int> us; //O(1)
 
 
+map<int, int> mpp;
+map<pair<int, int> , int> map2;
+
+mpp[1] = 3;
+mpp.insert({4,2});
+mpp.emplace({3,9});
+
+map2[{2,1}]= 1;
+
+for(auto it: mpp){
+    cout<<it.first<<" "<<it.second<<endl;
+}
+
+
 
 
 
