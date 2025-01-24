@@ -87,6 +87,31 @@ Node* deleteK(Node* head, int k)
     }
     return head;
 }
+Node *deleteElement(Node *head, int ele)
+{
+    if(head == NULL) return head;
+    if(head->data == ele)
+    {
+        Node *temp = head;
+        head = head->next;
+        free(temp);
+        return head;
+    }
+    Node *temp = head;
+    Node *Prev = NULL;
+    while(temp != NULL)
+    {
+        if(temp->data == ele)
+        {
+            Prev->next = Prev->next->next;
+            delete temp;
+            break;
+        }
+        Prev = temp;
+        temp = temp->next;
+    }
+    return head;
+}
 main()
 {
     vector<int> arr{12, 2, 3, 4, 5};
@@ -96,7 +121,8 @@ main()
     printLL(head);
     head = deleteTail(head);
     printLL(head);
-    head = deleteK(head, 2);
+    // head = deleteK(head, 2);
+    head = deleteElement(head, 3);
     printLL(head);
 return 0;
 }
