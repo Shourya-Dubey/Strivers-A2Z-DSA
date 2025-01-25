@@ -45,10 +45,87 @@ Node *convert2DLL(vector<int> &arr)
     }
     return head;
 }
+
+Node *deleteHead(Node *head)
+{
+    if(head == NULL || head->next == NULL) return head;
+
+    Node *prev = head;
+    head = head->next;
+
+    head->back = nullptr;
+    prev->next = nullptr;
+
+    delete prev;
+    return head;
+}
+
+Node *deleteTail(Node *head)
+{
+    if(head == NULL || head->next == NULL)
+    {
+        return head;
+    }
+
+    Node *tail = head;
+    while(tail->next != nullptr)
+    {
+        tail = tail->next;
+    }
+    Node *newTail = tail->back;
+    newTail->next = nullptr;
+    tail->back = nullptr;
+    delete tail;
+    return head;
+}
+
+Node *deleteKthElement(Node *head, int k)
+{
+    if(head == NULL) return NULL;
+
+    int count = 0;
+    Node *temp = head;
+    while (temp->next == nullptr)
+    {
+        count++;
+        if(count == k) break;
+        temp = temp->next;
+    }
+
+    Node *previous = temp->back;
+    Node *front = temp->next;
+    if(previous == nullptr && front == nullptr)
+    {
+        return NULL;
+    }
+    else if(previous == nullptr)
+    {
+        return deleteHead(head);
+    }
+    else if(front == nullptr)
+    {
+        return deleteTail(head);
+    }
+
+    previous->next = front;
+    front->back = previous;
+
+    temp->next = nullptr;
+    temp->back = nullptr;
+    delete temp;
+    return head;
+}
+
 main()
 {
     vector<int> arr{12, 2, 3, 4, 5};
     Node *head = convert2DLL(arr);
     printDLL(head);
+    // head = deleteHead(head);
+    // printDLL(head);
+    // head = deleteTail(head);
+    // printDLL(head);
+    head = deleteKthElement(head, 5);
+    printDLL(head);       
     return 0;
 }
