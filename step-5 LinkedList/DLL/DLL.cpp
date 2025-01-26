@@ -116,6 +116,24 @@ Node *deleteKthElement(Node *head, int k)
     return head;
 }
 
+void *deleteNode(Node *node)
+{
+    Node *prev = node->back;
+    Node *front = node->next;
+
+    if(front == NULL)
+    {
+        prev->next = nullptr;
+        node->back = nullptr;
+        delete node;
+    }
+
+    prev->next = front;
+    front->back = prev;
+    node->next = node->back = nullptr;
+    delete node;
+}
+
 main()
 {
     vector<int> arr{12, 2, 3, 4, 5};
@@ -125,7 +143,9 @@ main()
     // printDLL(head);
     // head = deleteTail(head);
     // printDLL(head);
-    head = deleteKthElement(head, 5);
-    printDLL(head);       
+    // head = deleteKthElement(head, 5);
+    // printDLL(head);
+    deleteNode(head->next);
+    printDLL(head);      
     return 0;
 }
